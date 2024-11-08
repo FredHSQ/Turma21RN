@@ -12,25 +12,6 @@ export const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold'
     },
-    textSkill: {
-        marginLeft: 5,
-        color: '#FFF',
-        fontSize: 22,
-        fontWeight: 'bold',
-    },
-    buttonSkill: {
-        backgroundColor: '#1f1e25',
-        padding: 15,
-        borderRadius: 50,
-        alignItems: 'center',
-        marginVertical: 5,
-        flexDirection: "row",
-    },
-	image: {
-        tintColor: "#f00",
-        width: 50,
-        height: 50
-    },
     input: {
         backgroundColor:'#1f1e25',
         color: '#fff',
