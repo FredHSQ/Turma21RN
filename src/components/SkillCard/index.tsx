@@ -4,16 +4,17 @@ import CircleIcon from './../../../CircleIcon.png';
 import { styles } from "./styles";
 
 interface SkillCardProps {
-    item: { 
-        title: string, 
-        id: string 
-    }
+  item: { 
+    title: string, 
+    id: string 
+  },
+  removeSkill: (id:string) => void
 }
 
 export const SkillCard = (props:SkillCardProps) => {
-    const { item } = props;
+    const { item, removeSkill } = props;
 
-    return <TouchableOpacity activeOpacity={0.7} style={styles.buttonSkill}>
+    return <TouchableOpacity onPress={() => removeSkill(item.id)} activeOpacity={0.7} style={styles.buttonSkill}>
     <Image source={CircleIcon} style={styles.image}/>
     <Text style={styles.textSkill}>
       { item.title }

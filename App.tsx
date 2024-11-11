@@ -1,6 +1,6 @@
 import React from 'react';
-import { Skills } from './src/screens/Skills';
+import { Routes } from './src/routes';
 
 export default function App () {
-  return <Skills/>
+  return <Routes/>
 }
