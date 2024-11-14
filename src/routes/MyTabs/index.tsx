@@ -2,14 +2,14 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image } from 'react-native';
 import { Skills } from '../../screens/Skills';
 import { Shop } from '../../screens/Shop';
-import SkillsIcon from '../assets/SkillIcon.png'
-import ShopIcon from '../assets/ShopIcon.png'
+import SkillsIcon from '../../assets/SkillIcon.png'
+import ShopIcon from '../../assets/ShopIcon.png'
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
 type RootTabParamList = {
-    Skills: {},
-    Shop: {}
+    Skills: undefined,
+    Shop: undefined
 }
 
 export function MyTabs() {

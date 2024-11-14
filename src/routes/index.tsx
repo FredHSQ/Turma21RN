@@ -1,8 +1,8 @@
 import { NavigationContainer } from '@react-navigation/native';
-import { MyTabs } from './MyTabs';
+import { MyStack } from './MyStack';
 
 export const Routes = () => {
     return <NavigationContainer>
-        <MyTabs />
+        <MyStack />
     </NavigationContainer>
 }
