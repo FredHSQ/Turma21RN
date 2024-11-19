@@ -4,12 +4,15 @@ import { Skills } from '../../screens/Skills';
 import { Shop } from '../../screens/Shop';
 import SkillsIcon from '../../assets/SkillIcon.png'
 import ShopIcon from '../../assets/ShopIcon.png'
+import CartIcon from '../../assets/CartIcon.png';
+import { Cart } from '../../screens/Cart';
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
 type RootTabParamList = {
     Skills: undefined,
-    Shop: undefined
+    Shop: undefined,
+    Cart: undefined
 }
 
 export function MyTabs() {
@@ -45,6 +48,18 @@ export function MyTabs() {
             }}
             name="Shop"
             component={Shop} 
+        />
+        <Tab.Screen 
+            options={{
+                tabBarIcon: ({ color }) => (
+                    <Image
+                        resizeMode='contain'
+                        source={CartIcon}
+                        style={{ tintColor: color, width: 30 }}
+                    />)
+            }}
+            name="Cart" 
+            component={Cart} 
         />
     </Tab.Navigator>
   );

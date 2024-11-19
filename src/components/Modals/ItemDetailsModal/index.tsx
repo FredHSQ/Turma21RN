@@ -1,20 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ActivityIndicator, Button, Image, Modal, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { styles } from "./styles";
 import CloseIcon from '../../../assets/CloseIcon.png';
 import { getMagicItemDetails, getMagicItemDetailsResponse } from "../../../services/apiDnd";
+import { CartContext } from "../../../context/CartContext";
 
 export interface ItemDetailsModalProps {
     setModal: React.Dispatch<React.SetStateAction<boolean>>,
     modal: boolean,
-    selectedIndex: string
+    selectedIndex: string,
+    cart?: boolean
 }
 
-export const ItemDetailsModal = ({modal, setModal, selectedIndex}: ItemDetailsModalProps) => {
-    const [loading, setLoading] =useState<boolean>(true);
-    const precoModal = Math.floor(Math.random() * 10000);
+export const ItemDetailsModal = ({modal, setModal, selectedIndex, cart}: ItemDetailsModalProps) => {
+    const [loading, setLoading] = useState<boolean>(true);
     const [magicItem, setMagicItem] = useState<getMagicItemDetailsResponse>();
-
+    const { addMagicItemToCart, removeMagicItemFromCart } = useContext(CartContext);
+    
     useEffect(()=>{
         getMagicItemDetails(selectedIndex).then(({data}) => {
             setMagicItem(data)
@@ -24,7 +26,24 @@ export const ItemDetailsModal = ({modal, setModal, selectedIndex}: ItemDetailsMo
             setLoading(false);
         })
     }, []);
+    
+    const precoModal = Math.floor(Math.random() * 10000);
 
+    function handleCart() {
+        if(cart) {
+            removeMagicItemFromCart(magicItem!.index)
+
+            return;
+        } 
+
+        addMagicItemToCart({
+            index: magicItem!.index,
+            name: magicItem!.name,
+            url: magicItem!.url,
+            preco: precoModal
+        })
+    }
+    
     return <Modal
         animationType="slide"
         transparent={true}
@@ -80,7 +99,7 @@ export const ItemDetailsModal = ({modal, setModal, selectedIndex}: ItemDetailsMo
                                         }
                                     </View>
                                 </ScrollView>
-                                {/* <Button title={cart ? "Remover do carrinho" : "Adicionar ao Carrinho"} onPress={handleButton}/> */}
+                                <Button title={"Adicionar ao Carrinho"} onPress={handleCart}/>
                             </>
                             :
                             <Text style={styles.title}>Erro</Text>
